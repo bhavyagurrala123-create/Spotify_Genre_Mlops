@@ -1,0 +1,31 @@
+# Python virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# VS Code
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# MLflow local files
+mlruns/
+mlflow.db
+
+# Generated ML artifacts
+artifacts/
+models/
+outputs/
+logs/
+
+# Processed dataset
+data/processed/
+
+# OS files
+.DS_Store
+Thumbs.db
