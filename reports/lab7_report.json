@@ -1,0 +1,16 @@
+{
+    "lab": "Lab 7 - Spotify Automated Pipeline",
+    "status": "SUCCESS",
+    "completed_at": "2026-10-13T18:35:28.348703",
+    "metrics": {
+        "accuracy": 0.3144233467402488,
+        "precision": 0.2958092763953301,
+        "recall": 0.3053554407203346,
+        "macro_f1": 0.29590672401180346
+    },
+    "stages": [
+        "Preprocessing: SUCCESS",
+        "Training: SUCCESS",
+        "Evaluation: SUCCESS"
+    ]
+}
