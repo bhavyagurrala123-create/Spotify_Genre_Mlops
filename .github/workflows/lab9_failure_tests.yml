@@ -1,0 +1,44 @@
+name: Spotify MLOps - Lab 9 Failure Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  failure-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify required dataset
+        run: |
+          python -c "from pathlib import Path; p=Path('data/raw/dataset.csv'); assert p.exists(), f'Missing dataset: {p}'; print('Dataset found')"
+
+      - name: Run Lab 7 pipeline
+        run: python pipelines/run_lab7.py
+
+      - name: Verify generated metrics
+        run: |
+          python -c "import json; from pathlib import Path; p=Path('outputs/metrics.json'); assert p.exists(), 'Metrics file missing'; d=json.loads(p.read_text()); assert 'accuracy' in d, 'Accuracy missing'; print('Metrics verified:', d)"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: spotify-lab9-test-results
+          path: |
+            reports/
+            outputs/
+            logs/
+          if-no-files-found: warn
